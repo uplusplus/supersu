@@ -1,0 +1,1 @@
+ndk-build.cmd NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=Android.mk APP_ALLOW_MISSING_DEPS=true

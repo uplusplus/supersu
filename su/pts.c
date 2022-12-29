@@ -35,41 +35,41 @@
 
 
 
-__inline__ int tcgetattr(int fd, struct termios *s)
-{
-	return ioctl(fd, TCGETS, s);
-}
+// __inline__ int tcgetattr(int fd, struct termios *s)
+// {
+// 	return ioctl(fd, TCGETS, s);
+// }
 
-__inline__ int grantpt(int __fd __attribute((unused)))
-{
-	(void)__fd;
-	return 0;     /* devpts does this all for us! */
-}
+// __inline__ int grantpt(int __fd __attribute((unused)))
+// {
+// 	(void)__fd;
+// 	return 0;     /* devpts does this all for us! */
+// }
 
-__inline__ int tcsetattr(int fd, int __opt, const struct termios *s)
-{
-	return ioctl(fd, __opt, (void *)s);
-}
+// __inline__ int tcsetattr(int fd, int __opt, const struct termios *s)
+// {
+// 	return ioctl(fd, __opt, (void *)s);
+// }
 
-__inline__ int sigaddset(sigset_t* set, int signum) {
-	int bit = signum - 1; // Signal numbers start at 1, but bit positions start at 0.
-	unsigned long* local_set = (unsigned long*) set;
-	if (set == NULL || bit < 0 || bit >= (int) (8*sizeof(sigset_t))) {
-		errno = EINVAL;
-		return -1;
-	}
-	local_set[bit / LONG_BIT] |= 1UL << (bit % LONG_BIT);
-	return 0;
-}
+// __inline__ int sigaddset(sigset_t* set, int signum) {
+// 	int bit = signum - 1; // Signal numbers start at 1, but bit positions start at 0.
+// 	unsigned long* local_set = (unsigned long*) set;
+// 	if (set == NULL || bit < 0 || bit >= (int) (8*sizeof(sigset_t))) {
+// 		errno = EINVAL;
+// 		return -1;
+// 	}
+// 	local_set[bit / LONG_BIT] |= 1UL << (bit % LONG_BIT);
+// 	return 0;
+// }
 
-__inline__ int sigemptyset(sigset_t* set) {
-	if (set == NULL) {
-		errno = EINVAL;
-		return -1;
-	}
-	memset(set, 0, sizeof *set);
-	return 0;
-}
+// __inline__ int sigemptyset(sigset_t* set) {
+// 	if (set == NULL) {
+// 		errno = EINVAL;
+// 		return -1;
+// 	}
+// 	memset(set, 0, sizeof *set);
+// 	return 0;
+// }
 
 /**
  * Helper functions
